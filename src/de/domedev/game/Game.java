@@ -105,6 +105,8 @@ public class Game extends Canvas implements Runnable {
     public Player ccPlayer;
 	public int PlayerArrayID = 1;
 	
+
+	
     // "synchronized" sorgt dafür das Threads sich nicht gegenseitig behindern
 	public synchronized void startGame() {
 		ccThread = new Thread(this);
