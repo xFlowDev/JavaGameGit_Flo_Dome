@@ -51,7 +51,7 @@ public class Screen {
 				int lx = xx;
 				if (lx >= ccWidth || lx < 0)
 					break;
-				int lTileIndex = ((lx >> 4) & ccTILE_COUNTER) + ((ly >> 4) & ccTILE_COUNTER) * ccTILE_SIZE;
+				int lTileIndex = ((lx >> 5) & ccTILE_COUNTER) + ((ly >> 5) & ccTILE_COUNTER) * ccTILE_SIZE;
 				ccPixel[xx + yy * ccWidth] = ccTiles[lTileIndex];
 			}
 		}

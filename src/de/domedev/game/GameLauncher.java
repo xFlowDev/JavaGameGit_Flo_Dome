@@ -22,7 +22,7 @@ public class GameLauncher extends Applet {
 		game.setMaximumSize(Game.ccWindow_DIMENSIONS);
 		game.setPreferredSize(Game.ccWindow_DIMENSIONS);
 
-		// Fenster wird erstellt, anhand mit den Daten aus der Game Classe
+		// Fenster wird erstellt, anhand den Daten aus der Game Classe
 		game.ccFrame = new JFrame(Game.ccWindow_TITLE);
 
 		game.ccFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
