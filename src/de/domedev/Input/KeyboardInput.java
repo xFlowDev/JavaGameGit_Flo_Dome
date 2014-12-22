@@ -5,34 +5,33 @@ import java.awt.event.KeyListener;
 
 /**
  * #[11.12.14, Florian]
- * Keylistener und Bewegung der spieler hinzugefügt 
- * die Richtungsvariable wird immer dann auf true gesetzt wenn die zugewiesene Taste gedrückt wird in der Game
+ * Keylistener und Bewegung der spieler hinzugefï¿½gt 
+ * die Richtungsvariable wird immer dann auf true gesetzt wenn die zugewiesene Taste gedrï¿½ckt wird in der Game
  * Klasse wird dann in der Methode tick() ein Abfrage gemacht welche denn True ist und dann wird die position
- * der figur verändert je nachdem welche taste gedrückt wurde
+ * der figur verï¿½ndert je nachdem welche taste gedrï¿½ckt wurde
  * 
  * */
 
 public class KeyboardInput implements KeyListener {
 
-	private boolean[] ccKeys = new boolean[126]; // Festlegen wie viele Tasten verfügbar sind
-	public boolean ccUp, ccDown, ccRight, ccLeft;
+	private boolean[] ccKeys = new boolean[126]; // Festlegen wie viele Tasten verfï¿½gbar sind
+	public boolean ccUp, ccDown, ccRight, ccLeft, ccSpace, ccI, ccShift, ccE;
 
 	public void checkIfKeyPressed() {
 		ccUp = ccKeys[KeyEvent.VK_UP] || ccKeys[KeyEvent.VK_W];
 		ccDown = ccKeys[KeyEvent.VK_DOWN] || ccKeys[KeyEvent.VK_S];
 		ccRight = ccKeys[KeyEvent.VK_RIGHT] || ccKeys[KeyEvent.VK_D];
 		ccLeft = ccKeys[KeyEvent.VK_LEFT] || ccKeys[KeyEvent.VK_A];
+		ccSpace = ccKeys[KeyEvent.VK_SPACE];
+		ccI = ccKeys[KeyEvent.VK_I];
+		ccShift = ccKeys[KeyEvent.VK_SHIFT];
+		ccE = ccKeys[KeyEvent.VK_E];
 
-		for (int ii = 0; ii < ccKeys.length; ii++) {
-			if (ccKeys[ii]) {
-				System.out.println("Keys :" + ii);
-			}
-		}
 	}
 
 	public void keyPressed(KeyEvent xEvent) {
-		ccKeys[xEvent.getKeyCode()] = true; // setzt den Key der gedrückt wurde auf true, also bemerkt das dieser
-											// "KeyCode" gedrückt wurde
+		ccKeys[xEvent.getKeyCode()] = true; // setzt den Key der gedrï¿½ckt wurde auf true, also bemerkt das dieser
+											// "KeyCode" gedrï¿½ckt wurde
 	}
 
 	public void keyReleased(KeyEvent xEvent) {
@@ -40,7 +39,6 @@ public class KeyboardInput implements KeyListener {
 												// mehr Aktiv
 	}
 
-	public void keyTyped(KeyEvent xEvent) {
-
+	public void keyTyped(KeyEvent xEvent) {	
 	}
 }

@@ -33,9 +33,10 @@ public class SpriteSheet {
 	
 	
 	private String ccPath;
-	private int ccSIZE;
+	public int ccSIZE;
 	public int[] ccPixel;
 	
+	public static SpriteSheet ccSpriteSheet = new SpriteSheet("/sprite_sheet.png",512);
 
 	public SpriteSheet(String xPath, int xSize){
 		ccPath = xPath;

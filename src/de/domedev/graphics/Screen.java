@@ -17,7 +17,7 @@ public class Screen {
 
 	int ccWidth, ccHeight;
 	public int[] ccPixel;
-	private final int ccTILE_SIZE = 16; //Ein Tile ist 16x16 rechtecke groß wobei ein rechteck 16x16 pixel hat
+	private final int ccTILE_SIZE = 32; //Ein Tile ist 32*32 rechtecke groß wobei ein rechteck 16x16 pixel hat
 	private final int ccTILE_COUNTER = ccTILE_SIZE - 1;
 	public int[] ccTiles = new int[ccTILE_SIZE * ccTILE_SIZE];
 
@@ -51,8 +51,8 @@ public class Screen {
 				int lx = xx;
 				if (lx >= ccWidth || lx < 0)
 					break;
-				int lTileIndex = ((lx >> 5) & ccTILE_COUNTER) + ((ly >> 5) & ccTILE_COUNTER) * ccTILE_SIZE;
-				ccPixel[xx + yy * ccWidth] = ccTiles[lTileIndex];
+				int lTileIndex = ((lx >> 4) & ccTILE_COUNTER) + ((ly >> 4) & ccTILE_COUNTER) * ccTILE_SIZE;
+				ccPixel[xx + yy * ccWidth] = Sprite.ccGrass.ccPixel[(xx&15) + (yy&15) + Sprite.ccSIZE];
 			}
 		}
 	}

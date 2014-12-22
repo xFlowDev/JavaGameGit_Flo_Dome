@@ -1,8 +1,10 @@
 package de.domedev.enities;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import de.domedev.Input.KeyboardInput;
+import de.domedev.inventar.Inventar;
 
 /* [29.11.14, Dome]
  * Spieler-Classe 
@@ -12,40 +14,95 @@ import de.domedev.Input.KeyboardInput;
  * */
 public class Player extends Charakter {
 
-	/* Variablen die für die Geschwindigkeit des Spielers sorgen */
+	/* Variablen die fï¿½r die Geschwindigkeit des Spielers sorgen */
 	private int ccSpeedX = 0;
 	private int ccSpeedY = 0;
-
+	private int ccStep = 2;
+	Inventar ccInventar = new Inventar(); 
 	
-	public Player(int xPosY, int xPosX, BufferedImage xSprite, boolean xNPC) {
-		super(xPosY, xPosX, xSprite, xNPC);
-		// TODO Auto-generated constructor stub
+	
+	public Player(int xPosY, int xPosX, BufferedImage xSprite, boolean xNPC, int xMaxHealth, int xHealth, int xLevel) {
+		super(xPosY, xPosX, xSprite, xNPC,xMaxHealth, xHealth, xLevel);
 	}
 
-	public void move(KeyboardInput xKey, Charakter xChar){
+	public void movePlayer(KeyboardInput xKey, Charakter xChar){
 		ccSpeedX = xChar.getPosX();
 		ccSpeedY = xChar.getPosY();
+		ccStep = 2;
+		// Sprint!
+		if(xKey.ccShift){
+			if(xChar.getAusdauer() > 0){
+				ccStep = 4;
+				xChar.setAusdauer(xChar.getAusdauer() - 4);
+				// System.out.println(xChar.getAusdauer());
+			}		
+		}
 		
 		if(xKey.ccUp){
-			ccSpeedY-=2;
+			ccSpeedY-=ccStep;
 			xChar.setPosY(ccSpeedY);
 			setDirection("UP");
 		}
 		if(xKey.ccDown){
-			ccSpeedY+=2;
+			ccSpeedY+=ccStep;
 			xChar.setPosY(ccSpeedY);
 			setDirection("DOWN");
 		}
 		if(xKey.ccLeft){
-			ccSpeedX-=2;
+			ccSpeedX-=ccStep;
 			xChar.setPosX(ccSpeedX);
 			setDirection("LEFT");
 		}
 		if(xKey.ccRight){
-			ccSpeedX+=2;
+			ccSpeedX+=ccStep;
 			xChar.setPosX(ccSpeedX);
 			setDirection("RIGHT");
-		}
+		}		
 	}
 
+	public void checkIfStrike(KeyboardInput xKey, Charakter xChar) {
+		if(xKey.ccSpace){
+			xChar.setStrike(true);	
+			if(xChar.getStrikePower() < 100){
+				xChar.setStrikePower(xChar.getStrikePower() + 1);
+			}
+			// System.out.println(xChar.getStrikePower());
+			// Wir Returnen, damit wir die Methode beenden und den Rest nicht ausfÃ¼hren
+			return;
+		}
+		xChar.setStrikePower(0);
+	}
+	
+	
+	/* Inventarsteuerung  */
+	/* Inventar anzeigen? */
+	public void checkIfShowInventory(KeyboardInput xKey, Charakter xChar) {
+		if(xKey.ccI){
+			System.out.println(ccInventar.isShowInventar());
+			if(ccInventar.isShowInventar() == true){
+				ccInventar.setShowInventar(false);
+			}else{
+				ccInventar.setShowInventar(true);
+			}
+		}	
+	}
+
+	public boolean isShowInventar(){
+		return ccInventar.isShowInventar();
+	}
+	
+	public void ShowInventar(Graphics g){
+		ccInventar.ShowInventar(g);
+	}
+	
+	/* Gold */
+	public int getPlayerGold(){
+		return ccInventar.getGold();
+	}
+	
+	public void setPlayerGold(int xPlayerGold){
+		ccInventar.setGold(xPlayerGold);
+	}
+	
+	
 }

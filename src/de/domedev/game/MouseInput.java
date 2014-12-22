@@ -38,43 +38,47 @@ public class MouseInput implements MouseListener {
 		 * Rectangle ExitButton = new Rectangle(game.Window_WIDTH / 2 - 100,
 		 * 375, 220, 50);
 		 */
-		// StartButton
-		if (MouseX >= game.ccWindow_WIDTH / 2 - 100
-				&& MouseX <= game.ccWindow_WIDTH / 2 + 120) {
-			if (MouseY >= 150 && MouseY <= 200) {
-				// Button gedrueckt!
-				game.STATUS = Game.STATE.GAME;
+		
+		if(game.STATUS == Game.STATE.MENU){
+			// StartButton
+			if (MouseX >= game.ccWindow_WIDTH / 2 - 100
+					&& MouseX <= game.ccWindow_WIDTH / 2 + 120) {
+				if (MouseY >= 150 && MouseY <= 200) {
+					// Button gedrueckt!
+					game.STATUS = Game.STATE.GAME;
+				}
 			}
-		}
 
-		// OptionButton
-		if (MouseX >= game.ccWindow_WIDTH / 2 - 100
-				&& MouseX <= game.ccWindow_WIDTH / 2 + 120) {
-			if (MouseY >= 225 && MouseY <= 275) {
-				// Button gedr�ckt!
-				System.out.println("Option");
+			// OptionButton
+			if (MouseX >= game.ccWindow_WIDTH / 2 - 100
+					&& MouseX <= game.ccWindow_WIDTH / 2 + 120) {
+				if (MouseY >= 225 && MouseY <= 275) {
+					// Button gedr�ckt!
+					System.out.println("Option");
+				}
 			}
-		}
 
-		// HelpButton
-		if (MouseX >= game.ccWindow_WIDTH / 2 - 100
-				&& MouseX <= game.ccWindow_WIDTH / 2 + 120) {
-			if (MouseY >= 300 && MouseY <= 350) {
-				// Button gedr�ckt!
-				System.out.println("Help");
+			// HelpButton
+			if (MouseX >= game.ccWindow_WIDTH / 2 - 100
+					&& MouseX <= game.ccWindow_WIDTH / 2 + 120) {
+				if (MouseY >= 300 && MouseY <= 350) {
+					// Button gedr�ckt!
+					System.out.println("Help");
+				}
 			}
-		}
 
-		// ExitButton
-		if (MouseX >= game.ccWindow_WIDTH / 2 - 100
-				&& MouseX <= game.ccWindow_WIDTH / 2 + 120) {
-			if (MouseY >= 375 && MouseY <= 425) {
-				// Button gedr�ckt!
-				/* stopGame() verursacht Fehler. Keine Ahnung warum => Keine Prio momentan*/
-				//game.stopGame();
-				System.exit(1);
+			// ExitButton
+			if (MouseX >= game.ccWindow_WIDTH / 2 - 100
+					&& MouseX <= game.ccWindow_WIDTH / 2 + 120) {
+				if (MouseY >= 375 && MouseY <= 425) {
+					// Button gedr�ckt!
+					/* stopGame() verursacht Fehler. Keine Ahnung warum => Keine Prio momentan*/
+					//game.stopGame();
+					System.exit(1);
+				}
 			}
 		}
+		
 
 	}
 
