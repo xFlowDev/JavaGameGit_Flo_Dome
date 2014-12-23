@@ -3,7 +3,7 @@ package de.domedev.graphics;
 public class Sprite {
 
 	public static int ccSIZE;
-	private int ccX, ccY;
+	private int x, y;
 	public int[] ccPixel;
 	private SpriteSheet ccSheet;
 
@@ -13,8 +13,8 @@ public class Sprite {
 	public Sprite(int xSize, int X, int Y, SpriteSheet xSheet) {
 		ccSIZE = xSize;
 		ccPixel = new int[xSize * xSize];
-		ccX = X * xSize;
-		ccY = Y * xSize;
+		x = X * xSize;
+		y = Y * xSize;
 		ccSheet = xSheet;
 
 		loadSprite();
@@ -23,7 +23,7 @@ public class Sprite {
 	private void loadSprite() {
 		for (int yy = 0; yy < ccSIZE; yy++) {
 			for (int xx = 0; xx < ccSIZE; xx++) {
-				ccPixel[xx + yy * ccSIZE] = ccSheet.ccPixel[(xx + ccX) + (yy + ccY) * ccSheet.ccSIZE];
+				ccPixel[xx + yy * ccSIZE] = ccSheet.ccPixel[(xx + this.x) + (yy + this.y) * ccSheet.ccSIZE];
 			}
 		}
 	}

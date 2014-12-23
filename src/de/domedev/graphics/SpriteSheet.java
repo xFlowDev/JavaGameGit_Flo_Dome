@@ -42,7 +42,7 @@ public class SpriteSheet {
 		ccPath = xPath;
 		ccSIZE = xSize;
 		
-		ccPixel = new int[ccSIZE + ccSIZE];
+		ccPixel = new int[ccSIZE * ccSIZE];
 		
 		loadImage();
 	}

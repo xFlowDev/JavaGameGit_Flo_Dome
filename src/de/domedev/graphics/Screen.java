@@ -52,7 +52,7 @@ public class Screen {
 				if (lx >= ccWidth || lx < 0)
 					break;
 				int lTileIndex = ((lx >> 4) & ccTILE_COUNTER) + ((ly >> 4) & ccTILE_COUNTER) * ccTILE_SIZE;
-				ccPixel[xx + yy * ccWidth] = Sprite.ccGrass.ccPixel[(xx&15) + (yy&15) + Sprite.ccSIZE];
+				ccPixel[xx + yy * ccWidth] = Sprite.ccGrass.ccPixel[(xx&31) + (yy&31) * Sprite.ccSIZE];
 			}
 		}
 	}
