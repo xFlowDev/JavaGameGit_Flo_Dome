@@ -21,6 +21,17 @@ import de.domedev.graphics.SpriteSheet;
 import de.domedev.inventar.Item;
 
 /**
+ * ToDo:
+ * #[7.1.2015, Dome Flo]
+ * - Map,  9.1.2014 -> Eine Karte
+ * - Inventar, Bugfix 
+ * - Angriff auf Test-Mob
+ * - Simples Event-System 
+ * - Gegener
+ * - Spritesheet zeichnen 
+ * Nice-To-Have 
+ * - Quest
+ * 
  * Allgemeines: 
  * #[28.11.14, Dome]
  *  Zum Gl�ck muss ich das Projekt nicht mein Chef zeigen.
@@ -108,12 +119,13 @@ public class Game extends Canvas implements Runnable {
 	
 
 	/* Charakter Var*/
-    public Charakter[] ccAllChars = new Charakter[2];
-    public Player ccPlayer;
-    public int ccPlayerID = 0;
+    private Charakter[] ccAllChars = new Charakter[2];
+    private Player ccPlayer;
+    private Player ccCharakter;
+    private int ccPlayerID = 0;
     
     /* Item List */
-	//Item ccItem = new Item(); 
+	private Item ccItem = new Item(); 
 	
 	/*Charakter Health anzeigen */
     
@@ -157,17 +169,23 @@ public class Game extends Canvas implements Runnable {
 		SpriteSheet Sprite = new SpriteSheet(SpriteSheet);
 		
 		// Items List laden
-		
+		System.out.println("Erstelle Items!");
+		// Attribute: ItemName, ItemType, SpriteSheet, MinLevel, Armor, minDMG, maxDMG 
+		ccItem.makeItem(ccItem.AutoIncrement(), "Schwert aus Holz", "Schwert", null , "1", "0", "1", "3");
+		ccItem.makeItem(ccItem.AutoIncrement(), "Schild aus Holz", "Schild", null , "1", "3", "0", "0");
+		ccItem.makeItem(ccItem.AutoIncrement(), "Brustschutz aus Holz", "Brust", null , "1", "10", "0", "0");
+		ccItem.makeItem(ccItem.AutoIncrement(), "Beinschutz aus Holz", "Bein", null , "1", "7", "0", "0");
 		
 		// Player
 		ccSprite = Sprite.grabSprite(0, 0, 32, 32);
 		ccPlayer = new Player(0, 0, ccSprite, true, 120, 100, 4);
-		
 		// Charakter erstellen => Alle in ein Array
 		ccAllChars[0] = new Charakter(300, 300, ccSprite, false, 100, 100, 4);
 		ccAllChars[1] = new Charakter(350, 300, ccSprite, false, 150, 100, 7);
 		ccAllChars[ccPlayerID].setErfahrung(26);
 		
+		// beispiel aufruf eines items
+		ccPlayer.addItem(1);
 	}
 
 	// run() Methode ist durch den Start des Threads aufgerufen, also thread.start()
@@ -188,16 +206,16 @@ public class Game extends Canvas implements Runnable {
 			lLastTime = lNow;
 			// Summierung aller Updates in einer Sekunde
 			while (lDelta >= 1) { 
-				update(); // update der Spiel logik
+				update();
 				lUpdates++;
 				lDelta--;
 			}
 			
-			
+			// update();
 			render();
 			lFrames++;
 
-			if (System.currentTimeMillis() - lTimer > 1000) {
+			if ((System.currentTimeMillis() - lTimer) > 1000) {
 				lTimer += 1000;
 				System.out.println("FPS: " + lFrames + " Updates: " + lUpdates);
 				ccFrame.setTitle(ccWindow_TITLE + "Updates: " + lUpdates + " FPS: " + lFrames);

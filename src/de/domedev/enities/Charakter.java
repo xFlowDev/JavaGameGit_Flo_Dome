@@ -21,6 +21,7 @@ public class Charakter {
 	private int ccLevel = 1;
 	private int ccErfahrung;
 	private int[] ccNextExpLevel = {0,10,15,40,90,180,300}; // lvl 0 - 7 ; wobei level 0 nichts gibt
+	private String ccDirection;
 	
 	public Charakter(int xPosY, int xPosX, BufferedImage xSprite, boolean xNPC,int xMaxHealth, int xHealth, int xLevel) {
 		ccPosY = xPosY;
@@ -53,7 +54,11 @@ public class Charakter {
 	}
 
 	public void setDirection(String xWalkingDirection) {
-		//System.out.println(xWalkingDirection);
+		ccDirection = xWalkingDirection;
+	}
+	
+	public String getDirection() {
+		return ccDirection;
 	}
 	
 	public int getHealth() {
@@ -85,7 +90,7 @@ public class Charakter {
 	}
 	
 	public void Strike() {
-		// der eigentliche schlag...whatever
+		System.out.println(getDirection());
 	}
 
 	public int getAusdauer() {

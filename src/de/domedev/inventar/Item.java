@@ -2,21 +2,18 @@ package de.domedev.inventar;
 
 public class Item {
 
-	// Struktur hat Platz für 128 Items 
-	private Item[] ccItem = new Item[128];
-	private String ccItemName;
+	// Struktur hat Platz fï¿½r 128 Items 
+	private String[][] ccItem = new String[128][24];
 	
 	public Item(){
-		// Item List erstellt: Erstelle jetzt Items!		
-		System.out.println("Erstelle");
-		makeItem(AutoIncrement(), "Name1");
+ 				
 	}
 	
 	
-	private int AutoIncrement() {
-		int i = 0;
-		for(i = 1; i < ccItem.length; i++){
-			if(ccItem[i] == null){
+	public int AutoIncrement() {
+		int i;
+		for(i = 0; i < ccItem.length; i++){
+			if(ccItem[i][0] == null){
 				break;
 			}	
 		}
@@ -24,11 +21,19 @@ public class Item {
 	}
 
 
-	public void makeItem(int xIndex, String xItemName){
-		//ccItem[xIndex].ccItemName = xItemName;
-		//System.out.println("Erstelle Item: " + ccItem[xIndex].ccItemName);
+	public void makeItem(int xIndex, String xItemName, String xItemType, String xItemSpriteSheet, String xItemMinLevel, String xItemArmor, String xItemMinDmg, String xItemMaxDmg){
+		ccItem[xIndex][0] = xItemName;
+		ccItem[xIndex][1] = xItemType;
+		ccItem[xIndex][2] = xItemMinLevel;
+		ccItem[xIndex][3] = xItemArmor;	
+		ccItem[xIndex][4] = xItemMinDmg;		
+		ccItem[xIndex][5] = xItemMaxDmg;
 	}
 	
+	
+	public String getItemName(int xIndex){
+		return ccItem[xIndex][0];
+	}
 	
 	/* ABC[] objects = new ABC[100];
 	   for (int n=0;n<100;n++) {

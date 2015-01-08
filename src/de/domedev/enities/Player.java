@@ -70,6 +70,10 @@ public class Player extends Charakter {
 			// Wir Returnen, damit wir die Methode beenden und den Rest nicht ausführen
 			return;
 		}
+		
+		if(xChar.getStrikePower() > 0){
+			xChar.Strike();
+		}
 		xChar.setStrikePower(0);
 	}
 	
@@ -102,6 +106,10 @@ public class Player extends Charakter {
 	
 	public void setPlayerGold(int xPlayerGold){
 		ccInventar.setGold(xPlayerGold);
+	}
+
+	public void addItem(int xIndex) {
+		ccInventar.addItem2Inventar(xIndex);	
 	}
 	
 	
