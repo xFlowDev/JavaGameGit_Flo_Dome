@@ -2,6 +2,8 @@ package de.domedev.graphics;
 
 import java.util.Random;
 
+import de.domedev.level.tile.Tile;
+
 /* Dome - 28.11.14 - 22:59:
  * WOFÜR ist dies Classe jetzt genau?
  * Die Classe sollte doch für das Rendern der Map sein oder seh ich das falsch?
@@ -10,8 +12,6 @@ import java.util.Random;
  * Mach das Ding so fertig, dass hier endlich eine Map zusehen ist. 
  * Performance ist egal, das ist nicht unsere Priorität.  
  * */
-
-
 
 public class Screen {
 
@@ -44,15 +44,25 @@ public class Screen {
 
 	public void renderScreen() {
 		for (int yy = 0; yy < ccHeight; yy++) {
-			int ly = yy ;
+			int ly = yy;
 			if (ly >= ccHeight || ly < 0)
 				break;
 			for (int xx = 0; xx < ccWidth; xx++) {
 				int lx = xx;
 				if (lx >= ccWidth || lx < 0)
 					break;
-				int lTileIndex = ((lx >> 4) & ccTILE_COUNTER) + ((ly >> 4) & ccTILE_COUNTER) * ccTILE_SIZE;
-				ccPixel[xx + yy * ccWidth] = Sprite.ccGrass.ccPixel[(xx&31) + (yy&31) * Sprite.ccSIZE];
+				ccPixel[xx + yy * ccWidth] = Sprite.ccGrass.ccPixel[(xx & 31) + (yy & 31) * Sprite.ccSIZE];
+			}
+		}
+	}
+
+	public void renderTile(int xPosX, int xPosY, Tile xTile) {
+		for (int y = 0; y < xTile.ccSprite.ccSIZE; y++) {
+			int yAbsolute = y + xPosY;
+			for (int x = 0; x < xTile.ccSprite.ccSIZE; x++) {
+				int xAbsolute = x + xPosX;
+				if (xAbsolute < 0 || xAbsolute >= ccWidth || yAbsolute < 0 || yAbsolute >= ccHeight)
+					break;
 			}
 		}
 	}
