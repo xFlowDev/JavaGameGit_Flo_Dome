@@ -30,15 +30,22 @@ public class KeyboardInput implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent xEvent) {
-		ccKeys[xEvent.getKeyCode()] = true; // setzt den Key der gedr�ckt wurde auf true, also bemerkt das dieser
-											// "KeyCode" gedr�ckt wurde
+		ccKeys[xEvent.getKeyCode()] = true;
 	}
 
 	public void keyReleased(KeyEvent xEvent) {
-		ccKeys[xEvent.getKeyCode()] = false; // wenn die Taste wieder losgelassen wird dann ist die Taste nicht
-												// mehr Aktiv
+		ccKeys[xEvent.getKeyCode()] = false;
 	}
 
 	public void keyTyped(KeyEvent xEvent) {	
+//		System.out.println(ccKeys[xEvent.getKeyCode()]);
+//		if(xEvent.getKeyCode() == KeyEvent.VK_I){
+//			System.out.println(ccKeys[KeyEvent.VK_I]);
+//			if(!ccKeys[KeyEvent.VK_I]){
+//				ccKeys[KeyEvent.VK_I] = true;
+//			}	 
+//		}else{
+//			ccKeys[xEvent.getKeyCode()] = false;
+//		}
 	}
 }

@@ -85,7 +85,7 @@ public class Inventar {
 
 				if(ccItemsInInventory[counter] != 0){					
 					g.setColor(Color.WHITE);
-					String ItemName = ccItem.getItemName(ccItemsInInventory[counter] );
+					String ItemName = "Name"; /*ccItem.getItemName(ccItemsInInventory[counter]);*/
 					System.out.println(ItemName);
 					g.drawString(ItemName, ccFillRectX + ccFillRectWidth - (ccFillRectWidth / 2) + (40 * y), ccFillRectY + 40 + (40 * x));
 				}else{

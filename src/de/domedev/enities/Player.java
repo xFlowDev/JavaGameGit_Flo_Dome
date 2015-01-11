@@ -41,7 +41,7 @@ public class Player extends Charakter {
 		if(xKey.ccUp){
 			ccSpeedY-=ccStep;
 			xChar.setPosY(ccSpeedY);
-			setDirection("UP");
+			this.setDirection("UP");
 		}
 		if(xKey.ccDown){
 			ccSpeedY+=ccStep;
@@ -110,7 +110,5 @@ public class Player extends Charakter {
 
 	public void addItem(int xIndex) {
 		ccInventar.addItem2Inventar(xIndex);	
-	}
-	
-	
+	}	
 }

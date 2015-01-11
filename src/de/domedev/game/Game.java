@@ -232,7 +232,6 @@ public class Game extends Canvas implements Runnable {
 			ccPlayer.movePlayer(ccKey,ccAllChars[ccPlayerID]); 
 			ccPlayer.checkIfStrike(ccKey,ccAllChars[ccPlayerID]);	
 			ccPlayer.checkIfShowInventory(ccKey, ccAllChars[ccPlayerID]);
-			
 			// Ausduaer regenieren
 			if(ccAllChars[ccPlayerID].getAusdauer() < ccAllChars[ccPlayerID].getMaxAusdauer()){
 				ccAllChars[ccPlayerID].setAusdauer(ccAllChars[ccPlayerID].getAusdauer() + 1);

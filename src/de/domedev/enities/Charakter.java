@@ -20,7 +20,7 @@ public class Charakter {
 	private int ccMaxAusdauer = 300;
 	private int ccLevel = 1;
 	private int ccErfahrung;
-	private int[] ccNextExpLevel = {0,10,15,40,90,180,300}; // lvl 0 - 7 ; wobei level 0 nichts gibt
+	private int[] ccNextExpLevel = {0,10,15,40,90,180,300}; // lvl 0 - 7 ; wobei level 0 nicht gibt
 	private String ccDirection;
 	
 	public Charakter(int xPosY, int xPosX, BufferedImage xSprite, boolean xNPC,int xMaxHealth, int xHealth, int xLevel) {
