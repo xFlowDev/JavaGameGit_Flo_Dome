@@ -7,7 +7,8 @@ public class Sprite {
 	public int[] ccPixel;
 	private SpriteSheet ccSheet;
 
-	public static Sprite ccGrass = new Sprite(32, 0, 1, SpriteSheet.ccSpriteSheet); 
+	public static Sprite ccGrass = new Sprite(32, 0, 1, SpriteSheet.ccSpriteSheet);
+	public static Sprite ccVoidSprite = new Sprite(32,0x039C31);
 
 	//x und y sagen der methode wo auf dem bild nach dem Sprite gesucht werden muss, die Größe ist offensichtlich die größe des Sprites
 	public Sprite(int xSize, int X, int Y, SpriteSheet xSheet) {
@@ -18,6 +19,19 @@ public class Sprite {
 		ccSheet = xSheet;
 
 		loadSprite();
+	}
+	
+	public Sprite(int xSize, int xColor){
+		ccSIZE = xSize;
+		ccPixel = new int[ccSIZE * ccSIZE];
+		setColor(xColor);
+	}
+
+	private void setColor(int xColor) {
+		for (int i = 0; i < ccSIZE*ccSIZE; i++) {
+			ccPixel[i] = xColor;
+		}
+		
 	}
 
 	private void loadSprite() {

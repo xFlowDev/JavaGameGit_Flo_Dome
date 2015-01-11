@@ -1,5 +1,7 @@
 package de.domedev.enities;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -21,8 +23,8 @@ public class Player extends Charakter {
 	Inventar ccInventar = new Inventar(); 
 	
 	
-	public Player(int xPosY, int xPosX, BufferedImage xSprite, boolean xNPC, int xMaxHealth, int xHealth, int xLevel) {
-		super(xPosY, xPosX, xSprite, xNPC,xMaxHealth, xHealth, xLevel);
+	public Player(int xPosY, int xPosX, BufferedImage xSprite, int xMaxHealth, int xHealth, int xLevel) {
+		super(xPosY, xPosX, xSprite,xMaxHealth, xHealth, xLevel);
 	}
 
 	public void movePlayer(KeyboardInput xKey, Charakter xChar){
@@ -102,6 +104,66 @@ public class Player extends Charakter {
 	
 	public void setPlayerGold(int xPlayerGold){
 		ccInventar.setGold(xPlayerGold);
+	}
+
+	public void drawUI(int xWindowHeight, int xWindowWidth, Graphics xGraphics) {
+		
+		if(getStrikePower() > 0 && getStrike()){
+			xGraphics.setColor(Color.YELLOW);
+			double StrikePowerBarWidth = 0;
+			StrikePowerBarWidth = (double)32 / 100 * getStrikePower();
+			xGraphics.fillRect(getPosX(), getPosY() + 32, (int)StrikePowerBarWidth, 5);	
+		}
+		
+		
+		/* Player spezifische Anzeige */
+		/*Inventar anzeige */
+			if(isShowInventar()){
+				ShowInventar(xGraphics);
+			}
+		
+		/* Playerbar */
+			Font fnt1 = new Font("arial", Font.BOLD, 15);
+			xGraphics.setColor(Color.LIGHT_GRAY); 
+			xGraphics.fillRect(0, xWindowHeight -21, xWindowWidth + 20, 21);
+			
+		/* Healthbar */
+			xGraphics.setColor(Color.GRAY); 
+			xGraphics.fillRect(10, xWindowHeight - 20, 250, 20);
+			xGraphics.setColor(Color.RED); 
+			double HealthBarWidth = (double)250 / getMaxHealth() * getHealth();
+			xGraphics.fillRect(10, xWindowHeight - 20, (int)HealthBarWidth, 20);
+			xGraphics.setFont(fnt1);
+			xGraphics.setColor(Color.BLACK);
+			xGraphics.drawString(getHealth() + "/" + getMaxHealth(), 100, xWindowHeight  - 2);
+		
+		/* Ausdauerbar */
+			xGraphics.setColor(Color.GRAY); 
+			xGraphics.fillRect(280, xWindowHeight - 20, 250, 20);
+			xGraphics.setColor(Color.CYAN);
+			double AusdauerBarWidth = (double)250 / getMaxAusdauer() * getAusdauer();
+			xGraphics.fillRect(280, xWindowHeight - 20, (int)AusdauerBarWidth, 20);
+			xGraphics.setFont(fnt1);
+			xGraphics.setColor(Color.BLACK);
+			xGraphics.drawString(getAusdauer() + "/" + getMaxAusdauer(), 400, xWindowHeight - 2);
+			
+		/* Erfahrungsbar */
+			xGraphics.setColor(Color.GRAY); 
+			xGraphics.fillRect(580, xWindowHeight - 20, 250, 20);
+			xGraphics.setColor(Color.YELLOW); 
+			double ExpBarWidth = (double)250 / getNextExpLevel(getLevel()) * getErfahrung();
+			xGraphics.fillRect(580, xWindowHeight - 20, (int)ExpBarWidth, 20);
+			xGraphics.setFont(fnt1);
+			xGraphics.setColor(Color.BLACK);
+			xGraphics.drawString(getErfahrung() + "/" + getNextExpLevel(getLevel()), 700, xWindowHeight - 2);	
+		
+		/* Gold und Level*/
+			xGraphics.setColor(Color.GRAY); 
+			xGraphics.fillRect(880, xWindowHeight - 20, 130, 20);
+			xGraphics.setFont(fnt1);
+			xGraphics.setColor(Color.BLACK);
+			xGraphics.drawString("Level:" + getLevel() + " Gold:" + getPlayerGold(), 900, xWindowHeight - 2);
+		
 	}
 	
 	

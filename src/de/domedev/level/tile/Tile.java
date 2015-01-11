@@ -9,6 +9,7 @@ public class Tile {
 	public Sprite ccSprite;
 	
 	public static Tile ccGrassTile = new GrassTile(Sprite.ccGrass);
+	public static Tile ccVoidTile = new VoidTile(Sprite.ccVoidSprite);
 	
 	public Tile(Sprite xSprite){
 		ccSprite = xSprite;

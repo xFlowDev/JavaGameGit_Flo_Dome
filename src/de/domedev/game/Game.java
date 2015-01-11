@@ -1,9 +1,7 @@
 package de.domedev.game;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -18,7 +16,6 @@ import de.domedev.enities.Player;
 import de.domedev.graphics.BufferedImageLoader;
 import de.domedev.graphics.Screen;
 import de.domedev.graphics.SpriteSheet;
-import de.domedev.inventar.Item;
 
 /**
  * Allgemeines: 
@@ -86,7 +83,6 @@ public class Game extends Canvas implements Runnable {
 	public static final int ccWindow_HEIGHT = ccWindow_WIDTH / 12 * 9;
 	public static final Dimension ccWindow_DIMENSIONS = new Dimension(ccWindow_WIDTH, ccWindow_HEIGHT);
 	public static final String ccWindow_TITLE = "The Real Java Game Project ";
-	public static Game ccGame;
 	public JFrame ccFrame;
 
 	
@@ -108,8 +104,8 @@ public class Game extends Canvas implements Runnable {
 	
 
 	/* Charakter Var*/
-    public Charakter[] ccAllChars = new Charakter[2];
     public Player ccPlayer;
+    public Charakter ccChar;
     public int ccPlayerID = 0;
     
     /* Item List */
@@ -161,12 +157,9 @@ public class Game extends Canvas implements Runnable {
 		
 		// Player
 		ccSprite = Sprite.grabSprite(0, 0, 32, 32);
-		ccPlayer = new Player(0, 0, ccSprite, true, 120, 100, 4);
-		
-		// Charakter erstellen => Alle in ein Array
-		ccAllChars[0] = new Charakter(300, 300, ccSprite, false, 100, 100, 4);
-		ccAllChars[1] = new Charakter(350, 300, ccSprite, false, 150, 100, 7);
-		ccAllChars[ccPlayerID].setErfahrung(26);
+		ccPlayer = new Player(0, 0, ccSprite, 120, 100, 4);
+		ccChar = new Charakter(300, 300, ccSprite, 120, 100, 1);
+		ccPlayer.setErfahrung(26);
 		
 	}
 
@@ -211,13 +204,13 @@ public class Game extends Canvas implements Runnable {
 	public void update() {
 		if (STATUS == STATE.GAME) {
 			ccKey.checkIfKeyPressed();
-			ccPlayer.movePlayer(ccKey,ccAllChars[ccPlayerID]); 
-			ccPlayer.checkIfStrike(ccKey,ccAllChars[ccPlayerID]);	
-			ccPlayer.checkIfShowInventory(ccKey, ccAllChars[ccPlayerID]);
+			ccPlayer.movePlayer(ccKey,ccPlayer); 
+			ccPlayer.checkIfStrike(ccKey,ccPlayer);	
+			ccPlayer.checkIfShowInventory(ccKey, ccPlayer);
 			
 			// Ausduaer regenieren
-			if(ccAllChars[ccPlayerID].getAusdauer() < ccAllChars[ccPlayerID].getMaxAusdauer()){
-				ccAllChars[ccPlayerID].setAusdauer(ccAllChars[ccPlayerID].getAusdauer() + 1);
+			if(ccPlayer.getAusdauer() < ccPlayer.getMaxAusdauer()){
+				ccPlayer.setAusdauer(ccPlayer.getAusdauer() + 1);
 			}
 		}
 	}
@@ -264,75 +257,11 @@ public class Game extends Canvas implements Runnable {
 			// Testausgabe
 
 			// Dome: Charakter zeichnen => Array wird durchlaufen
-			for(int i = 0;  i < ccAllChars.length; i++){				
-				g.drawImage(ccSprite, ccAllChars[i].getPosX(), ccAllChars[i].getPosY(), 32, 32, null);
+				g.drawImage(ccSprite, ccPlayer.getPosX(), ccPlayer.getPosY(), 32, 32, null);
+				g.drawImage(ccSprite, ccChar.getPosX(),ccChar.getPosY(),32,32,null);
 				
-				// Healthbar Anzeigen; Nur bei unter 100% .... NICHT BEIM PLAYER 
-				if(ccAllChars[i].getHealth() < ccAllChars[i].getMaxHealth() && i != ccPlayerID) {
-					g.setColor(Color.RED); 
-					double HealthBarWidth = 0;
-					HealthBarWidth = (double)32 / ccAllChars[i].getMaxHealth() * ccAllChars[i].getHealth();
-					g.fillRect(ccAllChars[i].getPosX(), ccAllChars[i].getPosY() - 10, (int)HealthBarWidth, 5);	
-				}
-				
-				// Powerschlag anzeigen
-				if(ccAllChars[i].getStrikePower() > 0 && ccAllChars[i].getStrike()){
-					g.setColor(Color.YELLOW);
-					double StrikePowerBarWidth = 0;
-					StrikePowerBarWidth = (double)32 / 100 * ccAllChars[i].getStrikePower();
-					g.fillRect(ccAllChars[i].getPosX(), ccAllChars[i].getPosY() + 32, (int)StrikePowerBarWidth, 5);	
-				}
-								
-			}			
-						
-		/* Player spezifische Anzeige */
-		/*Inventar anzeige */
-			if(ccPlayer.isShowInventar()){
-				ccPlayer.ShowInventar(g);
-			}
-		
-		/* Playerbar */
-			Font fnt1 = new Font("arial", Font.BOLD, 15);
-			g.setColor(Color.LIGHT_GRAY); 
-			g.fillRect(0, ccWindow_HEIGHT -21, ccWindow_WIDTH + 20, 21);
-			
-		/* Healthbar */
-			g.setColor(Color.GRAY); 
-			g.fillRect(10, ccWindow_HEIGHT - 20, 250, 20);
-			g.setColor(Color.RED); 
-			double HealthBarWidth = (double)250 / ccAllChars[ccPlayerID].getMaxHealth() * ccAllChars[ccPlayerID].getHealth();
-			g.fillRect(10, ccWindow_HEIGHT - 20, (int)HealthBarWidth, 20);
-			g.setFont(fnt1);
-			g.setColor(Color.BLACK);
-			g.drawString(ccAllChars[ccPlayerID].getHealth() + "/" + ccAllChars[ccPlayerID].getMaxHealth(), 100, ccWindow_HEIGHT  - 2);
-		
-		/* Ausdauerbar */
-			g.setColor(Color.GRAY); 
-			g.fillRect(280, ccWindow_HEIGHT - 20, 250, 20);
-			g.setColor(Color.CYAN);
-			double AusdauerBarWidth = (double)250 / ccAllChars[ccPlayerID].getMaxAusdauer() * ccAllChars[ccPlayerID].getAusdauer();
-			g.fillRect(280, ccWindow_HEIGHT - 20, (int)AusdauerBarWidth, 20);
-			g.setFont(fnt1);
-			g.setColor(Color.BLACK);
-			g.drawString(ccAllChars[ccPlayerID].getAusdauer() + "/" + ccAllChars[ccPlayerID].getMaxAusdauer(), 400, ccWindow_HEIGHT - 2);
-			
-		/* Erfahrungsbar */
-			g.setColor(Color.GRAY); 
-			g.fillRect(580, ccWindow_HEIGHT - 20, 250, 20);
-			g.setColor(Color.YELLOW); 
-			double ExpBarWidth = (double)250 / ccAllChars[ccPlayerID].getNextExpLevel(ccAllChars[ccPlayerID].getLevel()) * ccAllChars[ccPlayerID].getErfahrung();
-			g.fillRect(580, ccWindow_HEIGHT - 20, (int)ExpBarWidth, 20);
-			g.setFont(fnt1);
-			g.setColor(Color.BLACK);
-			g.drawString(ccAllChars[ccPlayerID].getErfahrung() + "/" + ccAllChars[ccPlayerID].getNextExpLevel(ccAllChars[ccPlayerID].getLevel()), 700, ccWindow_HEIGHT - 2);	
-		
-		/* Gold und Level*/
-			g.setColor(Color.GRAY); 
-			g.fillRect(880, ccWindow_HEIGHT - 20, 130, 20);
-			g.setFont(fnt1);
-			g.setColor(Color.BLACK);
-			g.drawString("Level:" + ccAllChars[ccPlayerID].getLevel() + " Gold:" + ccPlayer.getPlayerGold(), 900, ccWindow_HEIGHT - 2);	
-
+				ccChar.drawHealthbar(g);
+				ccPlayer.drawUI(ccWindow_HEIGHT,ccWindow_WIDTH,g);
 			
 		} else if (STATUS == STATE.MENU) {
 			menu.renderMenu(g);

@@ -1,5 +1,7 @@
 package de.domedev.enities;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 /* [29.11.14, Dome] 
@@ -22,7 +24,7 @@ public class Charakter {
 	private int ccErfahrung;
 	private int[] ccNextExpLevel = {0,10,15,40,90,180,300}; // lvl 0 - 7 ; wobei level 0 nichts gibt
 	
-	public Charakter(int xPosY, int xPosX, BufferedImage xSprite, boolean xNPC,int xMaxHealth, int xHealth, int xLevel) {
+	public Charakter(int xPosY, int xPosX, BufferedImage xSprite ,int xMaxHealth, int xHealth, int xLevel) {
 		ccPosY = xPosY;
 		ccPosX = xPosX;
 		ccHealth = xHealth;
@@ -125,5 +127,15 @@ public class Charakter {
 
 	public void setErfahrung(int ccErfahrung) {
 		this.ccErfahrung = ccErfahrung;
+	}
+
+	public void drawHealthbar(Graphics g) {
+		// Healthbar Anzeigen; Nur bei unter 100% .... NICHT BEIM PLAYER 
+		if(getHealth() < getMaxHealth()) {
+			g.setColor(Color.RED); 
+			double HealthBarWidth = 0;
+			HealthBarWidth = (double)32 / getMaxHealth() * getHealth();
+			g.fillRect(getPosX(), getPosY() - 10, (int)HealthBarWidth, 5);	
+		}
 	}
 }

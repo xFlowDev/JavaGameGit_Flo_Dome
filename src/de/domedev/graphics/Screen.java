@@ -15,7 +15,7 @@ import de.domedev.level.tile.Tile;
 
 public class Screen {
 
-	int ccWidth, ccHeight;
+	public int ccWidth, ccHeight;
 	public int[] ccPixel;
 	private final int ccTILE_SIZE = 32; //Ein Tile ist 32*32 rechtecke groﬂ wobei ein rechteck 16x16 pixel hat
 	private final int ccTILE_COUNTER = ccTILE_SIZE - 1;
@@ -56,13 +56,14 @@ public class Screen {
 		}
 	}
 
-	public void renderTile(int xPosX, int xPosY, Tile xTile) {
+	public void renderTile(int xOffset, int yOffset, Tile xTile) {
 		for (int y = 0; y < xTile.ccSprite.ccSIZE; y++) {
-			int yAbsolute = y + xPosY;
+			int yAbsolute = y + yOffset;
 			for (int x = 0; x < xTile.ccSprite.ccSIZE; x++) {
-				int xAbsolute = x + xPosX;
+				int xAbsolute = x + xOffset;
 				if (xAbsolute < 0 || xAbsolute >= ccWidth || yAbsolute < 0 || yAbsolute >= ccHeight)
 					break;
+				ccPixel[xAbsolute + yAbsolute * ccWidth] = xTile.ccSprite.ccPixel[x+y*xTile.ccSprite.ccSIZE];
 			}
 		}
 	}
