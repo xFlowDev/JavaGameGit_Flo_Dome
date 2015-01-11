@@ -12,6 +12,10 @@ public class Inventar {
 				ccFillRectY = 150,
 				ccFillRectWidth = 850, 
 				ccFillRectHeight = 350;
+	// Item-List. 80 + 4 = 84 Maximal an Items. + Boolischer Wert (1(true) und 0(false))für an und ausgezogen.
+	protected int ccMaxItems = 84;
+	private int[] ccItemsInInventory = new int[ccMaxItems];
+	private Item ccItem;
 	
 	public Inventar(){
 		setGold(0);
@@ -32,7 +36,24 @@ public class Inventar {
 	public void setShowInventar(boolean ccShowInventar) {
 		this.ccShowInventar = ccShowInventar;
 	}
+	
+	private int AutoIncrement() {
+		int i;
+		for(i = 0; i < ccItemsInInventory.length; i++){
+			if(ccItemsInInventory[i] == 0){
+				break;
+			}	
+		}
+		System.out.println(i);
+		return i;
+	}
 
+	public void addItem2Inventar(int xIndex){
+		ccItemsInInventory[AutoIncrement()] = xIndex;
+		//System.out.println(ccItem.getItem(xIndex));
+	}
+	
+	
 	public void ShowInventar(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g; 
 
@@ -53,10 +74,24 @@ public class Inventar {
 		
 		
 		/* Rechts - Itemtasche*/
-		g.setColor(Color.LIGHT_GRAY);
-		for(int i = 0; i < 8; i++){
-			for(int x = 0; x < 10; x++){
-				g.fillRect(ccFillRectX + ccFillRectWidth - (ccFillRectWidth / 2) + (40 * x), ccFillRectY + 20 + (40 * i), 35, 35);
+		
+
+		
+		int counter = 0;
+		for(int x = 0; x < 8; x++){
+			for(int y = 0; y < 10; y++){
+				g.setColor(Color.LIGHT_GRAY);
+				g.fillRect(ccFillRectX + ccFillRectWidth - (ccFillRectWidth / 2) + (40 * y), ccFillRectY + 20 + (40 * x), 35, 35);
+
+				if(ccItemsInInventory[counter] != 0){					
+					g.setColor(Color.WHITE);
+					String ItemName = "Name"; /*ccItem.getItemName(ccItemsInInventory[counter]);*/
+					System.out.println(ItemName);
+					g.drawString(ItemName, ccFillRectX + ccFillRectWidth - (ccFillRectWidth / 2) + (40 * y), ccFillRectY + 40 + (40 * x));
+				}else{
+					System.out.println(counter);
+				}
+				counter++;
 			}
 		}
 		
