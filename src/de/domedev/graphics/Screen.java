@@ -41,13 +41,13 @@ public class Screen {
 
 
 	public void renderTile(int xOffset, int yOffset, Tile xTile) {
-		for (int y = 0; y < xTile.ccSprite.ccSIZE; y++) {
+		for (int y = 0; y < Sprite.ccSIZE; y++) {
 			int yAbsolute = y + yOffset;
-			for (int x = 0; x < xTile.ccSprite.ccSIZE; x++) {
+			for (int x = 0; x < Sprite.ccSIZE; x++) {
 				int xAbsolute = x + xOffset;
 				if (xAbsolute < 0 || xAbsolute >= ccWidth || yAbsolute < 0 || yAbsolute >= ccHeight)
 					break;
-				ccPixel[xAbsolute + yAbsolute * ccWidth] = xTile.ccSprite.ccPixel[x+y*xTile.ccSprite.ccSIZE];
+				ccPixel[xAbsolute + yAbsolute * ccWidth] = xTile.ccSprite.ccPixel[x+y*Sprite.ccSIZE];
 			}
 		}
 	}

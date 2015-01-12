@@ -87,7 +87,7 @@ public class Game extends Canvas implements Runnable {
 	public static final String ccWindow_TITLE = "The Real Java Game Project ";
 	public JFrame ccFrame;
 
-	public Level ccSpawnLevel;
+	public Level ccSpawnLevel = new SpawnLevel("/SpawnLevel.png");
 	
 	private KeyboardInput ccKey;
 	private Thread ccThread;
@@ -155,7 +155,9 @@ public class Game extends Canvas implements Runnable {
 		SpriteSheet Sprite = new SpriteSheet(SpriteSheet);
 		
 		
-		ccSpawnLevel = new SpawnLevel("/SpawnLevel.png");
+
+		
+
 		// Items List laden
 		
 		

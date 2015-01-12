@@ -6,8 +6,9 @@ import de.domedev.level.tile.Tile;
 public class Level {
 
 	protected Tile[] ccTiles;
-	private int ccWidth, ccHeight;
-	private int[] ccTilesInt;
+	protected int ccWidth, ccHeight;
+	protected int[] ccTilesInt;
+	
 
 	public Level(int xHeight, int xWidth) {
 		ccWidth = xWidth;
@@ -45,7 +46,7 @@ public class Level {
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
 //				getTile(x, y).render(x, y, xScreen);
-				ccTiles[x + y * 32].render(x,y,xScreen) ;
+				ccTiles[x + y * 32].render(x,y,xScreen);
 			}
 
 		}
