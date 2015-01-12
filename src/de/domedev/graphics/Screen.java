@@ -29,11 +29,6 @@ public class Screen {
 		ccHeight = xHeight;
 		ccPixel = new int[ccHeight * ccWidth];
 
-		/* Dome: Augenkrebs Farben entfernt... */
-		for (int ii = 0; ii < ccTILE_SIZE * ccTILE_SIZE; ii++) {
-			ccTiles[0] = 0x000000; // Besser zu erkenn wo ein Tile anfängt, immer das erste schwarz
-			ccTiles[ii] = 0x618722;
-		}
 
 	}
 

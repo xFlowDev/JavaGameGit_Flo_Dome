@@ -9,7 +9,7 @@ import de.domedev.level.tile.Tile;
 
 public class SpawnLevel extends Level {
 
-	private Tile[] ccTiles;
+	
 	private int[] ccLevelPixel;
 
 	public SpawnLevel(String xPath) {
@@ -42,8 +42,8 @@ public class SpawnLevel extends Level {
 		for (int i = 0; i < ccTiles.length; i++) {
 			if (ccLevelPixel[i] == 0x00FF00)
 				ccTiles[i] = Tile.ccGrassTile;
-			if (ccLevelPixel[i] == 0x00FF00)
-				ccTiles[i] = Tile.ccGrassTile;
+			if (ccLevelPixel[i] == 0x777777)
+				ccTiles[i] = Tile.ccSteinTile;
 //			if (ccLevelPixel[i] == 0x00FF00)
 //				ccTiles[i] = Tile.ccGrassTile;
 //			if (ccLevelPixel[i] == 0x00FF00)
