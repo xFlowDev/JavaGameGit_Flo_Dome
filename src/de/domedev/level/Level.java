@@ -8,7 +8,6 @@ public class Level {
 	protected Tile[] ccTiles;
 	protected int ccWidth, ccHeight;
 	protected int[] ccTilesInt;
-	
 
 	public Level(int xHeight, int xWidth) {
 		ccWidth = xWidth;
@@ -20,6 +19,7 @@ public class Level {
 
 	public Level(String xPath) {
 		loadLevel(xPath);
+		generateLevel();
 	}
 
 	protected void loadLevel(String xPath) {
@@ -32,6 +32,7 @@ public class Level {
 
 	public void update() {
 		// wird aus der Game.update() methode aufgerufen
+
 	}
 
 	public void render(int xPosition, int yPosition, Screen xScreen) {
@@ -45,17 +46,21 @@ public class Level {
 
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
-//				getTile(x, y).render(x, y, xScreen);
-				ccTiles[x + y * 32].render(x,y,xScreen);
+				// getTile(x, y).render(x, y, xScreen);
+				if (x + y * 32 < 0 || x + y * 32 >= 1024) {
+					Tile.ccVoidTile.render(x,y,xScreen);
+					continue;
+				}
+				ccTiles[x + y * 32].render(x, y, xScreen);
 			}
 
 		}
 	}
 
-//	public Tile getTile(int xPos, int yPos) {
-//		return Tile.ccGrassTile;
-//
-//		// return Tile.ccVoidTile;
-//
-//	}
+	// public Tile getTile(int xPos, int yPos) {
+	// return Tile.ccGrassTile;
+	//
+	// // return Tile.ccVoidTile;
+	//
+	// }
 }

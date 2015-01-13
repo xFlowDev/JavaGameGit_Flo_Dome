@@ -87,7 +87,7 @@ public class Game extends Canvas implements Runnable {
 	public static final String ccWindow_TITLE = "The Real Java Game Project ";
 	public JFrame ccFrame;
 
-	public Level ccSpawnLevel = new SpawnLevel("/SpawnLevel.png");
+	public Level ccSpawnLevel;
 	
 	private KeyboardInput ccKey;
 	private Thread ccThread;
@@ -143,7 +143,7 @@ public class Game extends Canvas implements Runnable {
 		ccKey = new KeyboardInput();
 		addKeyListener(ccKey);
 		
-		
+		ccSpawnLevel = new SpawnLevel("/SpawnLevel.png");
 		/* SpriteSheet laden */
 		BufferedImageLoader loader = new BufferedImageLoader();
 		BufferedImage SpriteSheet = null;
@@ -248,7 +248,7 @@ public class Game extends Canvas implements Runnable {
 		
 		// Dome: @Flo: render Map? Zuk�nftig? Siehe Class Screen
 		ccScreen.clearScreen();
-		ccSpawnLevel.render(1, 1, ccScreen);
+		ccSpawnLevel.render(0, 0, ccScreen);
 		
 		for (int ii = 0; ii < ccPixel.length; ii++) {
 			ccPixel[ii] = ccScreen.ccPixel[ii];

@@ -8,8 +8,10 @@ public class Sprite {
 	private SpriteSheet ccSheet;
 
 	public static Sprite ccGrass = new Sprite(32, 0, 1, SpriteSheet.ccSpriteSheet);
+	public static Sprite ccSteinTile = new Sprite(32,2,1, SpriteSheet.ccSpriteSheet);
+	public static Sprite ccWasserTile = new Sprite(32,1,1, SpriteSheet.ccSpriteSheet);
 	public static Sprite ccVoidSprite = new Sprite(32,0x039C31);
-	public static Sprite ccSteinTile = new Sprite(32,3,1, SpriteSheet.ccSpriteSheet);
+	
 	
 	//x und y sagen der methode wo auf dem bild nach dem Sprite gesucht werden muss, die Größe ist offensichtlich die größe des Sprites
 	public Sprite(int xSize, int X, int Y, SpriteSheet xSheet) {
