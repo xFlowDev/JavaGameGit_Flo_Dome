@@ -16,7 +16,6 @@ import de.domedev.enities.Player;
 import de.domedev.graphics.BufferedImageLoader;
 import de.domedev.graphics.Screen;
 import de.domedev.graphics.SpriteSheet;
-import de.domedev.level.Level;
 
 /**
  * Allgemeines: 
@@ -86,7 +85,6 @@ public class Game extends Canvas implements Runnable {
 	public static final String ccWindow_TITLE = "The Real Java Game Project ";
 	public JFrame ccFrame;
 
-	public Level ccLevel = new Level("/sprite_sheet.png");
 	
 	private KeyboardInput ccKey;
 	private Thread ccThread;
@@ -113,6 +111,7 @@ public class Game extends Canvas implements Runnable {
     /* Item List */
 	//Item ccItem = new Item(); 
 	
+	/*Charakter Health anzeigen */
     
     // "synchronized" sorgt daf�r das Threads sich nicht gegenseitig behindern
 	public synchronized void startGame() {
@@ -243,9 +242,7 @@ public class Game extends Canvas implements Runnable {
 		
 		// Dome: @Flo: render Map? Zuk�nftig? Siehe Class Screen
 		ccScreen.clearScreen();
-		//ccScreen.renderScreen();
-		ccLevel.render(1, 1, ccScreen);
-		
+		ccScreen.renderScreen();
 		for (int ii = 0; ii < ccPixel.length; ii++) {
 			ccPixel[ii] = ccScreen.ccPixel[ii];
 		}
