@@ -7,9 +7,9 @@ public class Sprite {
 	public int[] ccPixel;
 	private SpriteSheet ccSheet;
 
-	public static Sprite ccGrass = new Sprite(32, 0, 1, SpriteSheet.ccSpriteSheet);
-	public static Sprite ccSteinTile = new Sprite(32,2,1, SpriteSheet.ccSpriteSheet);
-	public static Sprite ccWasserTile = new Sprite(32,1,1, SpriteSheet.ccSpriteSheet);
+	public static Sprite ccGrassSprite = new Sprite(32, 0, 1, SpriteSheet.ccSpriteSheet);
+	public static Sprite ccSteinSprtie = new Sprite(32,3,1, SpriteSheet.ccSpriteSheet);
+	public static Sprite ccWasserSprite = new Sprite(32,1,1, SpriteSheet.ccSpriteSheet);
 	public static Sprite ccVoidSprite = new Sprite(32,0x039C31);
 	
 	

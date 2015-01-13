@@ -8,10 +8,10 @@ public class Tile {
 	public int ccX,ccY;
 	public Sprite ccSprite;
 	
-	public static Tile ccGrassTile = new GrassTile(Sprite.ccGrass);
+	public static Tile ccGrassTile = new GrassTile(Sprite.ccGrassSprite);
 	public static Tile ccVoidTile = new VoidTile(Sprite.ccVoidSprite);
-	public static Tile ccSteinTile = new SteinTile(Sprite.ccSteinTile);
-	public static Tile ccWasserTile = new WasserTile(Sprite.ccWasserTile);
+	public static Tile ccSteinTile = new SteinTile(Sprite.ccSteinSprtie);
+	public static Tile ccWasserTile = new WasserTile(Sprite.ccWasserSprite);
 	
 	public Tile(Sprite xSprite){
 		ccSprite = xSprite;

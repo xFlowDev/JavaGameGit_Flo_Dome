@@ -6,7 +6,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import de.domedev.Input.KeyboardInput;
+import de.domedev.graphics.Screen;
 import de.domedev.inventar.Inventar;
+import de.domedev.level.tile.Tile;
 
 /* [29.11.14, Dome]
  * Spieler-Classe 
@@ -27,7 +29,7 @@ public class Player extends Charakter {
 		super(xPosY, xPosX, xSprite,xMaxHealth, xHealth, xLevel);
 	}
 
-	public void movePlayer(KeyboardInput xKey, Charakter xChar){
+	public void movePlayer(KeyboardInput xKey, Charakter xChar, Screen xScreen){
 		ccSpeedX = xChar.getPosX();
 		ccSpeedY = xChar.getPosY();
 		ccStep = 2;
@@ -60,6 +62,7 @@ public class Player extends Charakter {
 			xChar.setPosX(ccSpeedX);
 			setDirection("RIGHT");
 		}		
+
 	}
 
 	public void checkIfStrike(KeyboardInput xKey, Charakter xChar) {

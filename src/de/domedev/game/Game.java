@@ -210,7 +210,7 @@ public class Game extends Canvas implements Runnable {
 	public void update() {
 		if (STATUS == STATE.GAME) {
 			ccKey.checkIfKeyPressed();
-			ccPlayer.movePlayer(ccKey,ccPlayer); 
+			ccPlayer.movePlayer(ccKey,ccPlayer,ccScreen); 
 			ccPlayer.checkIfStrike(ccKey,ccPlayer);	
 			ccPlayer.checkIfShowInventory(ccKey, ccPlayer);
 			
