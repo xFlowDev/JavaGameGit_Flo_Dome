@@ -29,11 +29,6 @@ public class Screen {
 		ccHeight = xHeight;
 		ccPixel = new int[ccHeight * ccWidth];
 
-		/* Dome: Augenkrebs Farben entfernt... */
-		for (int ii = 0; ii < ccTILE_SIZE * ccTILE_SIZE; ii++) {
-			ccTiles[0] = 0x000000; // Besser zu erkenn wo ein Tile anfängt, immer das erste schwarz
-			ccTiles[ii] = 0x618722;
-		}
 
 	}
 
@@ -46,13 +41,13 @@ public class Screen {
 
 
 	public void renderTile(int xOffset, int yOffset, Tile xTile) {
-		for (int y = 0; y < xTile.ccSprite.ccSIZE; y++) {
+		for (int y = 0; y < Sprite.ccSIZE; y++) {
 			int yAbsolute = y + yOffset;
-			for (int x = 0; x < xTile.ccSprite.ccSIZE; x++) {
+			for (int x = 0; x < Sprite.ccSIZE; x++) {
 				int xAbsolute = x + xOffset;
 				if (xAbsolute < 0 || xAbsolute >= ccWidth || yAbsolute < 0 || yAbsolute >= ccHeight)
 					break;
-				ccPixel[xAbsolute + yAbsolute * ccWidth] = xTile.ccSprite.ccPixel[x+y*xTile.ccSprite.ccSIZE];
+				ccPixel[xAbsolute + yAbsolute * ccWidth] = xTile.ccSprite.ccPixel[x+y*Sprite.ccSIZE];
 			}
 		}
 	}

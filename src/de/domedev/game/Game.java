@@ -17,6 +17,7 @@ import de.domedev.graphics.BufferedImageLoader;
 import de.domedev.graphics.Screen;
 import de.domedev.graphics.SpriteSheet;
 import de.domedev.level.Level;
+import de.domedev.level.SpawnLevel;
 
 /**
  * Allgemeines: 
@@ -86,7 +87,7 @@ public class Game extends Canvas implements Runnable {
 	public static final String ccWindow_TITLE = "The Real Java Game Project ";
 	public JFrame ccFrame;
 
-	public Level ccLevel = new Level("/sprite_sheet.png");
+	public Level ccSpawnLevel = new SpawnLevel("/SpawnLevel.png");
 	
 	private KeyboardInput ccKey;
 	private Thread ccThread;
@@ -153,6 +154,10 @@ public class Game extends Canvas implements Runnable {
 		}
 		SpriteSheet Sprite = new SpriteSheet(SpriteSheet);
 		
+		
+
+		
+
 		// Items List laden
 		
 		
@@ -243,8 +248,7 @@ public class Game extends Canvas implements Runnable {
 		
 		// Dome: @Flo: render Map? Zuk�nftig? Siehe Class Screen
 		ccScreen.clearScreen();
-		//ccScreen.renderScreen();
-		ccLevel.render(1, 1, ccScreen);
+		ccSpawnLevel.render(1, 1, ccScreen);
 		
 		for (int ii = 0; ii < ccPixel.length; ii++) {
 			ccPixel[ii] = ccScreen.ccPixel[ii];
